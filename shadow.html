@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        background-color: pink;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items:center;
+      }
+      #upperL {
+        width: 400px;
+        height: 200px;
+        padding: 20px;
+        font-size: 3rem;
+        background-color: white;
+        box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+      }
+      #upperR {
+        width: 400px;
+        height: 200px;
+        padding: 20px;
+        font-size: 3rem;
+        background-color: white;
+        box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ratio in shadow should be equal. higher the elevation more will be offsets and more will be blur -->
+    <div id="upperL"></div>
+    <div id="upperR"></div>
+  </body>
+</html>

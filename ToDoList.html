@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <link rel='stylesheet' href="style/ToDoList.css">
+    <title>To-Do List</title>
+    <script src='scripts/ToDoList.js'></script>
+
+    <body>
+        <h1> To-Do List</h1>
+        <div class='main'>
+            <div class='content'>
+                <div class='temp'>
+                    <input type="checkbox" class='chkbox' onchange="onClickChkbox(this)">
+                    <p>Task</p>
+                    <button class='closebt' onclick="onClickCrossbtn(this)">X</button>
+                </div>
+            </div>
+
+            <div class='options'>
+                <input type="text" placeholder="Add New Task ..." class='inp'>
+                <button class='addBt'>Add</button>
+                <button class='clrcomp'>Clear Completed</button>
+                <button class='clrall'>Clear All</button>
+            </div>
+        </div>
+        
+        
+    </body>
+</head>

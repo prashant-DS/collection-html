@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script defer>
+        const changeToBlob = () =>{
+            const image = document.querySelector('img');
+            const canvas = document.querySelector('.canvas');
+            canvas.width = image.width/2;
+            canvas.height = image.height/2;
+            canvas.getContext('2d').drawImage(image, 0, 0, image.width/2, image.height/2);
+            
+            const quality = null;
+
+            canvas.toBlob(blob=>{
+                var link = document.createElement('a');
+                link.download = `${quality}.jpeg`;
+                link.href = URL.createObjectURL(blob);
+                link.click();
+
+            },'image/jpeg',quality)
+        }
+    </script>
+</head>
+<body>
+    <img
+        src="img/wall.jpg"
+        alt="wallpaper"
+    />
+    <button class="btn" onclick="changeToBlob()">To Blob</button>
+    <br/>
+    <canvas class="canvas"/>
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>

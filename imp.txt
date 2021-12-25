@@ -1,0 +1,222 @@
+FLEX
+
+display: flex
+    align all inside content in horizontal
+
+flex-direction : row
+    rowsie/columnwise/reverse
+    sets main axis
+
+flex-wrap: wrap
+    in case of overflow it goes down
+
+justify-content: space-evenly
+    align items along main axis
+
+align-items: flex-end
+    align items along cross axis  
+
+align-content: space-between
+    set space between muntiple rows i.e., overflown
+
+align-self: flex-end;
+    cross axis alignment of a single div
+
+order: -1
+    sets on each element of flex
+    smallest will come first  
+
+flex-grow: 4;
+    on single item
+        cover all space by only item widrh increasing
+    on all item  
+        cover all space by all item increasing by value
+
+flex-basis: 100px;
+    sets max-width of item
+    acts as min-width when used with grow
+
+flex-shrink : 2
+    this item will shrink 2 times more than others
+
+margin: auto
+    leave available spaces on all sides
+
+
+
+-----------------------------------------------------------------------------------------------
+CSS3
+
+
+border-radius:50%
+    % or px
+
+box shadow: horizintal vertical blur spread color
+    same as text-shadow
+box-shadow: inset hor ver blur color
+    inner shadow
+    muntiple shadows wil be seperated by comma
+
+
+background-image: linear-gradient(to right,grey 0%,white 80%,grey 100%);
+    ddefault is top to bottom
+background-image: radial-gradient(circle,red 10%,blue 90%,green 10%);
+    default is elliptical
+background-size: 50% 50%;
+    if background image is in div which is smaller then img will resize
+    other values can be contain(inside but not fit) and cover(scale and crop)
+background-clip: content-box;
+    background position wrt border
+
+
+
+-------------------------------------------------------------------------------------------------
+
+SASS
+
+Variable
+    $bgcolor : black;
+
+Nesting
+    .mydiv{
+        p{
+            color : $bgcolor;
+        }
+    }
+
+
+Partial and import
+    we can make muntiple scss partial files with name _filename.scss and all them in mane file
+    @import "filename"
+
+Mixin
+    acts as #define of c
+
+    @mixin mname($val){
+        margin : val + px;
+    }
+    div{
+        @include mname(10);
+    }
+
+
+Extends
+    use properties of another block
+    use placeholder(%) before parent block name to hide that in css file
+
+
+Operators
+    all c operators e.g., ==, >=, and, or 
+
+
+    Concatation
+        $x : 45;
+        height : $x + px
+            results in 45px
+            can be used in value(right side) but not in property(left)
+
+    Interpolation
+        @mixin margin($pos $amt){
+            margin-#{$pos} : amt;
+        }
+
+
+Functions
+    it cant set any property like mixin it can only return something
+
+    @function f-name($value){
+        @return $value*2;
+    }
+
+    number functions
+        abs()
+        floor()
+        ceil()
+        round()
+        min()                   takes muntiple values
+        percentage()            returns in %
+        comparable(2px,2em)     true or false
+        random(10)              random in 1 to 10
+        unit(100px)             px
+        unitless(100px)         t/f
+
+    string functions
+        quote(abc)              "abc"
+        unquote("10px")         10px
+        to-upper-case()
+        to-lower-case()
+        str-length()
+        str-index('abc','bc')           1 indexing
+        str-insert('abc','d',2)         adbc
+        str-slice('absc',start,end)     end can be -ve
+        unique-id()                     every time 9 digit id
+
+    color functions
+        lighten(red,50%)
+        darken(red,50%)
+        saturate(red,50%)
+        desaturate(red,50%)                  
+        adjust-hue(red,60deg)
+        mix(red,blue,10%)               10% red rest blue
+        tranparentize(red,val)          val is 0 to 1
+        red(col)
+        green(col)
+        blue(col)
+        hue(col)                        in deg
+        satration(col)                  in %
+        lightness(col)                  in %
+        alpha(col)                      0 to 1
+
+    list functions
+        $ll : 1px 2px 3px ($ll : 1px,2px,3px) ($ll : (1px, 2px, 3px) )
+        length($ll)
+        index($ll,1px)
+        nth($ll,1)
+        set-nth($ll,2,2em)              return new list
+        join($ll,(a,b,c),comma)         return joined list and each seperated by comma(or space)
+        append($ll,4px,comma)           add only one element
+        zip($l,(a,b,c))                 1px a, 2px b, 3px c
+        list-separator($l)
+        is-bracketed($l)                t/f
+
+    selector functions
+        selector-nest('ul','li')                    add both with space i.e., ul li
+        selector-append('a','.active')              add without space
+        selector-replace('a.abc','abc','link')      a.link
+        is-superselector('a','a.active')            t/f
+        simple-selectors('a.abc')                   a .abc
+        selector-unify(sel1,sel2)                   tries to combine
+
+    map functions
+        $mp : ('red':#ff0000, 'green':#00ff00);
+        map-get($mp,'red')
+        map-keys($mp)
+        map-values($mp)
+        map-merge(mp1,mp2)
+        map-remove(mp,key)
+        map-has-key(mp,key)                         t/f
+        all list functions can be used
+
+    introspection functions
+        variable-exist(name)                 t/f,name without $
+        global-variable-exist(name)
+        mixin-exist(name)
+        function-exist(name)
+        type-of(var_name)                   type of variable
+        inspect(name)                       gives value
+
+
+
+Conditional Directive
+    @mixin mm($var){
+        margin:var
+        @content
+    }
+    div{
+        @include mm(20px) {
+            padding:2px;
+        }
+    }
+
+
+Loops
