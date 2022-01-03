@@ -1,13 +1,17 @@
-const workBtn = document.querySelector("#work-btn");
+// web workers let us create new thread for parallel execution.
+// Communication between this thread and the main process utilizes events
+// i.e., postMessage and onMessage events
+
+const workBtn = document.querySelector("#workBtn");
 workBtn.addEventListener("click", () => {
   const myWorker = new Worker("scripts/worker.js");
-  myWorker.postMessage("do work");
+  myWorker.postMessage("startLongWait");
   myWorker.onmessage = function (e) {
     document.querySelector("#output").innerHTML = e.data;
   };
 });
-const hahaBtn = document.querySelector("#btn");
-hahaBtn.addEventListener("click", () => {
+const randomBtn = document.querySelector("#btn");
+randomBtn.addEventListener("click", () => {
   document.querySelector("#random").innerHTML =
-    "random - " + Math.round(Math.random() * 100);
+    "random: " + Math.round(Math.random() * 100);
 });

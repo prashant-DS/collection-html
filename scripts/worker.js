@@ -1,8 +1,14 @@
-onmessage = function (e) {
-  let final = 0;
-  for (let i = 0; i < 1000000000; i++) {
-    final += i;
-  }
+const longWait = () => {
+  for (let i = 0; i < 5000000000; i++);
+};
 
-  postMessage(final);
+onmessage = function (e) {
+  switch (e.data) {
+    case "startLongWait":
+      postMessage("Waiting...");
+      longWait();
+      postMessage("Wait over");
+    default:
+      postMessage("Invalid request");
+  }
 };
