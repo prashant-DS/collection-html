@@ -8,6 +8,7 @@ onmessage = function (e) {
       postMessage("Waiting...");
       longWait();
       postMessage("Wait over");
+      break;
     default:
       postMessage("Invalid request");
   }

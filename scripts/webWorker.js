@@ -4,7 +4,7 @@
 
 const workBtn = document.querySelector("#workBtn");
 workBtn.addEventListener("click", () => {
-  const myWorker = new Worker("scripts/worker.js");
+  const myWorker = new Worker("scripts/workerThread.js");
   myWorker.postMessage("startLongWait");
   myWorker.onmessage = function (e) {
     document.querySelector("#output").innerHTML = e.data;
