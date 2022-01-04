@@ -219,4 +219,19 @@ Conditional Directive
     }
 
 
-Loops
+-------------------------------------------------------------------
+
+SERVICE WORKER
+
+- Runs in different thread
+- used to cache assets and serve in case
+- offline experience
+
+LifeCycle -> install then activate
+
+- location of file determines its scope
+
+=> when change in service worker is detected by browser on page refresh.
+ - new service worker will install but not activates
+ - new one will install on window close or hard reload or programmatically
+ - we should give user notification about updated content and then refresh on consent

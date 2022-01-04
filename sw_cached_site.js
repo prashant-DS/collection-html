@@ -1,6 +1,6 @@
 //  service worker file should be at root level to capture fetch of all the pages
 
-const CACHE_NAME = "v2";
+const CACHE_NAME = "v1";
 
 // call install event
 self.addEventListener("install", (e) => {
@@ -29,14 +29,25 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   console.log("Service Worker: Fetching");
   e.respondWith(
-    fetch(e.request)
-      .then((res) => {
-        const resClone = res.clone();
+    caches.match(e.request).then((res) => {
+      if (res) return res;
+      return fetch(e.request).then((response) => {
+        // The promise does not reject on HTTP errors — it only rejects on network errors
+        if (!response || response.status !== 200 || response.type !== "basic") {
+          return response;
+        }
+        const responseClone = response.clone();
         caches.open(CACHE_NAME).then((cache) => {
-          cache.put(e.request, resClone);
+          cache.put(e.request, responseClone);
         });
-        return res;
-      })
-      .catch(() => caches.match(e.request).then((res) => res))
+        return response;
+      });
+    })
   );
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
